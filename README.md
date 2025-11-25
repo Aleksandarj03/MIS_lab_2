@@ -2,15 +2,10 @@
 
 Laboratoriska vezba 2
 
-## Getting Started
+Izgled na aplikacijata:
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot_20251125-192301](https://github.com/user-attachments/assets/c6c0ec16-cf78-4a8f-b4b8-943d0d1af029)
+![Screenshot_20251125-192310](https://github.com/user-attachments/assets/541aad59-c151-4223-bafa-82aa90095c4a)
+![Screenshot_20251125-192321](https://github.com/user-attachments/assets/044ecba3-baa9-48e6-b670-f7698967eda9)
+![Screenshot_20251125-192539](https://github.com/user-attachments/assets/e2ed2512-b4b9-4ad1-b758-49e309a5b36b)
+![Screenshot_20251125-192555](https://github.com/user-attachments/assets/2effd98a-cfaa-489f-a1ed-9db14f607513)

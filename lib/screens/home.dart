@@ -4,6 +4,8 @@ import '../services/api_service.dart';
 import '../widgets/category_card.dart';
 import 'dishes.dart';
 import 'recipe_detail.dart';
+import 'favorites.dart';
+import 'notification_settings.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -82,6 +84,30 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Recipe Categories'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FavoritesScreen(),
+                ),
+              );
+            },
+            tooltip: 'Favorite Recipes',
+          ),
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NotificationSettingsScreen(),
+                ),
+              );
+            },
+            tooltip: 'Notification Settings',
+          ),
           IconButton(
             icon: const Icon(Icons.shuffle),
             onPressed: _showRandomRecipe,

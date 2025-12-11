@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/meal.dart';
 import '../services/api_service.dart';
+import '../services/favorites_service.dart';
 import '../widgets/meal_grid_item.dart';
 import 'recipe_detail.dart';
 
@@ -18,16 +19,35 @@ class DishesScreen extends StatefulWidget {
 
 class _DishesScreenState extends State<DishesScreen> {
   final ApiService _apiService = ApiService();
+  final FavoritesService _favoritesService = FavoritesService();
   List<Meal> _meals = [];
   List<Meal> _filteredMeals = [];
   bool _isLoading = true;
   final TextEditingController _searchController = TextEditingController();
+  final Set<String> _favoriteIds = {};
 
   @override
   void initState() {
     super.initState();
     _loadMeals();
+    _loadFavorites();
     _searchController.addListener(_filterMeals);
+  }
+
+  Future<void> _loadFavorites() async {
+    final favorites = await _favoritesService.getFavorites();
+    setState(() {
+      _favoriteIds.clear();
+      _favoriteIds.addAll(favorites.map((r) => r.idMeal));
+    });
+  }
+
+  Future<void> _toggleFavorite(Meal meal) async {
+    final recipe = await _apiService.getRecipeById(meal.idMeal);
+    if (recipe != null) {
+      await _favoritesService.toggleFavorite(recipe);
+      await _loadFavorites();
+    }
   }
 
   @override
@@ -120,11 +140,14 @@ class _DishesScreenState extends State<DishesScreen> {
                         ),
                         itemCount: _filteredMeals.length,
                         itemBuilder: (context, index) {
+                          final meal = _filteredMeals[index];
                           return MealGridItem(
-                            meal: _filteredMeals[index],
+                            meal: meal,
+                            isFavorite: _favoriteIds.contains(meal.idMeal),
+                            onFavoriteToggle: () => _toggleFavorite(meal),
                             onTap: () async {
                               final recipe = await _apiService.getRecipeById(
-                                _filteredMeals[index].idMeal,
+                                meal.idMeal,
                               );
                               if (recipe != null && mounted) {
                                 Navigator.push(
@@ -133,7 +156,7 @@ class _DishesScreenState extends State<DishesScreen> {
                                     builder: (context) =>
                                         RecipeDetailScreen(recipe: recipe),
                                   ),
-                                );
+                                ).then((_) => _loadFavorites());
                               }
                             },
                           );

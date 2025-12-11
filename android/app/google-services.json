@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "523605245160",
+    "project_id": "lab-3-ac34e",
+    "storage_bucket": "lab-3-ac34e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523605245160:android:559d2cc7fbddeec2385d5d",
+        "android_client_info": {
+          "package_name": "mk.ukim.finki.lab_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvIivE-F_xi1k7ebyRp_KzaXtkza3gMDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

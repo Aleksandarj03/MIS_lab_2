@@ -29,7 +29,7 @@ class Recipe {
     List<String> ingredients = [];
     List<String> measures = [];
 
-    // Parse ingredients and measures from strIngredient1-20 and strMeasure1-20
+  
     for (int i = 1; i <= 20; i++) {
       final ingredient = json['strIngredient$i'];
       final measure = json['strMeasure$i'];
@@ -66,5 +66,31 @@ class Recipe {
       });
     }
     return result;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = {
+      'idMeal': idMeal,
+      'strMeal': strMeal,
+      'strCategory': strCategory,
+      'strArea': strArea,
+      'strInstructions': strInstructions,
+      'strMealThumb': strMealThumb,
+      'strTags': strTags,
+      'strYoutube': strYoutube,
+    };
+
+    if (strMealAlternate != null) {
+      json['strMealAlternate'] = strMealAlternate;
+    }
+
+    for (int i = 0; i < ingredients.length; i++) {
+      json['strIngredient${i + 1}'] = ingredients[i];
+      if (i < measures.length) {
+        json['strMeasure${i + 1}'] = measures[i];
+      }
+    }
+
+    return json;
   }
 }
